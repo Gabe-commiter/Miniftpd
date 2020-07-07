@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	}
 	*/
 
-	daemon(0, 0);//使程序后天化运行
+	daemon(0, 0);//使程序后台化运行
 /*
 typedef struct session
 {
