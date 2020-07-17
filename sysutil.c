@@ -45,11 +45,17 @@ int tcp_server(const char *host, unsigned short port)
 		if (inet_aton(host, &servaddr.sin_addr) == 0)
 		{
 			struct hostent *hp;
+			/*
+			If name is
+			an IPv4 address, no lookup is performed and gethostbyname() simply
+			copies name into the h_name field and its struct in_addr equivalent
+            into the h_addr_list[0] field of the returned hostent structure. 
+			*/
 			hp = gethostbyname(host);
 			if (hp == NULL)
 				ERR_EXIT("gethostbyname");
 
-			servaddr.sin_addr = *(struct in_addr*)hp->h_addr;
+			servaddr.sin_addr = *(struct in_addr*)hp->h_addr;//h->h_addr就是链表的第一个值
 		}
 	}
 	else

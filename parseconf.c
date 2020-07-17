@@ -1,5 +1,5 @@
 #include"parseconf.h"
-
+//结构体数组初始化的方式
 static struct parseconf_bool_setting 
 {
 	const char *p_setting_name;
@@ -57,7 +57,7 @@ void parseconf_load_file(const char *path)
 			continue;
 
 		//key=value
-		str_trim_crlf(setting_line);
+		str_trim_crlf(setting_line);//去回车和换行符
 		parseconf_load_setting(setting_line);
 		memset(setting_line, 0, sizeof(setting_line));
 	}

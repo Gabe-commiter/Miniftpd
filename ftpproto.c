@@ -701,7 +701,7 @@ void limit_rate(session_t *sess, int bytes_transfered, int is_upload)
 	sess->bw_transfer_start_sec = get_time_sec();
 	sess->bw_transfer_start_usec = get_time_usec();
 }
-
+//下载文件
 static void do_retr(session_t *sess)
 {
 	//1建立数据连接
@@ -788,7 +788,7 @@ static void do_retr(session_t *sess)
 	else if(flag == 3)
 		ftp_reply(sess, FTP_BADSENDNET, "Failure writting to network stream.");
 }
-
+//上传文件
 static void do_stor(session_t *sess)
 {
 

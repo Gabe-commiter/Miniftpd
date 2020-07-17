@@ -1,6 +1,6 @@
 #include"str.h"
 
-//
+//去掉回车和换行符
 void str_trim_crlf(char *str)
 {
 	while(*str!='\r' && *str!='\n')
