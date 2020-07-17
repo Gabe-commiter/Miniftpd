@@ -107,8 +107,9 @@ void start_cmdio_alarm(void)
 {
 	if(tunable_idle_session_timeout != 0)
 	{
-		signal(SIGALRM, handle_alarm_timeout); //安装闹钟信号
-		alarm(tunable_idle_session_timeout);
+		signal(SIGALRM, handle_alarm_timeout); //响应闹钟信号的处理函数
+		alarm(tunable_idle_session_timeout);//闹钟函数，它可以在进程中设置一个定时器，当定时器指定的时间到时，它向进程发送SIGALRM信号。
+		//可以设置忽略或者不捕获此信号，如果采用默认方式，就终止调用该alarm函数的进程
 	}
 }
 
