@@ -13,9 +13,9 @@
 - 鉴权登录  
 主要是do_user和do_pass两个命令的实现，将用户验证和密码验证分离设计，以保证良好的用户体验。  
 
- - do_user的实现，调用getpwnam函数，将登陆的用户名的passwd取出来，如果不为空的话，将pw_uid注册进session会话结构体中的uid中。在项目中，把uid作为一个用户的唯一标识。完成用户验证之后，就可以进行密码的验证了。
- - do_pass的实现，调用getpwuid函数，得到已经验证过的账户的passwd;然后通过getspnam函数，得到影子密码结构体 spwd,取spwd->sp_pwdp作为密钥，调用crypt函数加密(DES),加密后的返回值和密钥比较，如果相同验证通过。
- - getuid函数可以来判断启动进程的用户是不是root用户。  
+  - do_user的实现，调用getpwnam函数，将登陆的用户名的passwd取出来，如果不为空的话，将pw_uid注册进session会话结构体中的uid中。在项目中，把uid作为一个用户的唯一标识。完成用户验证之后，就可以进行密码的验证了。
+  - do_pass的实现，调用getpwuid函数，得到已经验证过的账户的passwd;然后通过getspnam函数，得到影子密码结构体 spwd,取spwd->sp_pwdp作为密钥，调用crypt函数加密(DES),加密后的返回值和密钥比较，如果相同验证通过。
+  - getuid函数可以来判断启动进程的用户是不是root用户。  
 
 
 - 列表显示  
