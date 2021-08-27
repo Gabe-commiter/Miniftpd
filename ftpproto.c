@@ -2,7 +2,7 @@
 
 extern session_t *p_sess;
 
-//ø’œ–∂œø™
+//Á©∫Èó≤Êñ≠ÂºÄ
 void handle_alarm_timeout(int sig);
 void start_cmdio_alarm(void);
 void handle_sigalrm(int sig);
@@ -12,13 +12,13 @@ void limit_rate(session_t *sess, int bytes_transfered, int is_upload);
 
 int get_transfer_fd(session_t *sess);
 void list_common(session_t *sess);
-//ftpµƒªÿ∏¥œ˚œ¢∫Ø ˝
+//ftpÁöÑÂõûÂ§çÊ∂àÊÅØÂáΩÊï∞
 void ftp_reply(session_t *sess, int status, const char *text)
 {
 	char buf[MAX_BUFFER_SIZE];
 	memset(buf, 0, sizeof(buf));
-	sprintf(buf, "%d %s\r\n",status, text);//Ω´status∫Õtext∏Ò ΩªØµΩbuf÷–
-	writen(sess->ctrl_fd,  buf, strlen(buf));//∑¢ÀÕœ˚œ¢
+	sprintf(buf, "%d %s\r\n",status, text);//Â∞ÜstatusÂíåtextÊ†ºÂºèÂåñÂà∞buf‰∏≠
+	writen(sess->ctrl_fd,  buf, strlen(buf));//ÂèëÈÄÅÊ∂àÊÅØ
 }
 
 static void do_user(session_t *sess);
@@ -51,13 +51,13 @@ static void do_size(session_t *sess);
 static void do_stat(session_t *sess);
 static void do_noop(session_t *sess);
 static void do_help(session_t *sess);
-// µœ÷√¸¡Ó”≥…‰µƒΩ·ππÃÂ
+//ÂÆûÁé∞ÂëΩ‰ª§Êò†Â∞ÑÁöÑÁªìÊûÑ‰Ωì
 typedef struct ftpcmd
 {
 	const char *cmd;
 	void (*cmd_handler)(session_t *sess);
 } ftpcmd_t;
-// µœ÷√¸¡Ó”≥…‰µƒΩ·ππÃÂ ˝◊È
+//ÂÆûÁé∞ÂëΩ‰ª§Êò†Â∞ÑÁöÑÁªìÊûÑ‰ΩìÊï∞ÁªÑ
 static ftpcmd_t ctrl_cmds[] =
 {
 	{"USER", do_user},
@@ -85,7 +85,7 @@ static ftpcmd_t ctrl_cmds[] =
 
 
 //////////////////////////////////////////////////////////////////////////////
-//ø’œ–∂œø™
+//Á©∫Èó≤Êñ≠ÂºÄ
 
 /*
 void handle_alarm_timeout(int sig)
@@ -107,9 +107,9 @@ void start_cmdio_alarm(void)
 {
 	if(tunable_idle_session_timeout != 0)
 	{
-		signal(SIGALRM, handle_alarm_timeout); //œÏ”¶ƒ÷÷”–≈∫≈µƒ¥¶¿Ì∫Ø ˝
-		alarm(tunable_idle_session_timeout);//ƒ÷÷”∫Ø ˝£¨À¸ø…“‘‘⁄Ω¯≥Ã÷–…Ë÷√“ª∏ˆ∂® ±∆˜£¨µ±∂® ±∆˜÷∏∂®µƒ ±º‰µΩ ±£¨À¸œÚΩ¯≥Ã∑¢ÀÕSIGALRM–≈∫≈°£
-		//ø…“‘…Ë÷√∫ˆ¬‘ªÚ’ﬂ≤ª≤∂ªÒ¥À–≈∫≈£¨»Áπ˚≤…”√ƒ¨»œ∑Ω Ω£¨æÕ÷’÷πµ˜”√∏√alarm∫Ø ˝µƒΩ¯≥Ã
+		signal(SIGALRM, handle_alarm_timeout); //ÂìçÂ∫îÈóπÈíü‰ø°Âè∑ÁöÑÂ§ÑÁêÜÂáΩÊï∞
+		alarm(tunable_idle_session_timeout);//ÈóπÈíüÂáΩÊï∞ÔºåÂÆÉÂèØ‰ª•Âú®ËøõÁ®ã‰∏≠ËÆæÁΩÆ‰∏Ä‰∏™ÂÆöÊó∂Âô®ÔºåÂΩìÂÆöÊó∂Âô®ÊåáÂÆöÁöÑÊó∂Èó¥Âà∞Êó∂ÔºåÂÆÉÂêëËøõÁ®ãÂèëÈÄÅSIGALRM‰ø°Âè∑„ÄÇ
+		//ÂèØ‰ª•ËÆæÁΩÆÂøΩÁï•ÊàñËÄÖ‰∏çÊçïËé∑Ê≠§‰ø°Âè∑ÔºåÂ¶ÇÊûúÈááÁî®ÈªòËÆ§ÊñπÂºèÔºåÂ∞±ÁªàÊ≠¢Ë∞ÉÁî®ËØ•alarmÂáΩÊï∞ÁöÑËøõÁ®ã
 	}
 }
 
@@ -121,7 +121,7 @@ void handle_sigalrm(int sig)
 		exit(EXIT_FAILURE);
 	}
 
-	// ∑Ò‘Ú£¨µ±«∞¥¶”⁄ ˝æ›¥´ ‰µƒ◊¥Ã¨ ’µΩ¡À≥¨ ±–≈∫≈
+	// Âê¶ÂàôÔºåÂΩìÂâçÂ§Ñ‰∫éÊï∞ÊçÆ‰º†ËæìÁöÑÁä∂ÊÄÅÊî∂Âà∞‰∫ÜË∂ÖÊó∂‰ø°Âè∑
 	p_sess->data_process = 0;
 	start_data_alarm();
 }
@@ -146,7 +146,7 @@ void handle_child(session_t *sess)
 	int ret;
 	while(1)
 	{
-		//√ø¥ŒΩ¯»Î—≠ª∑£¨«Â¡„
+		//ÊØèÊ¨°ËøõÂÖ•Âæ™ÁéØÔºåÊ∏ÖÈõ∂
 		memset(sess->cmdline, 0, sizeof(sess->cmdline));
 		memset(sess->cmd, 0, sizeof(sess->cmd));
 		memset(sess->arg, 0, sizeof(sess->arg));
@@ -173,33 +173,33 @@ void handle_child(session_t *sess)
 		size_t i;
 		for(i=0; i<n; ++i)
 		{
-			if(strcmp(ctrl_cmds[i].cmd, sess->cmd) == 0)//”–√¸¡Ó
+			if(strcmp(ctrl_cmds[i].cmd, sess->cmd) == 0)//ÊúâÂëΩ‰ª§
 			{
-				if(ctrl_cmds[i].cmd_handler != NULL)// µœ÷µƒ
+				if(ctrl_cmds[i].cmd_handler != NULL)//ÂÆûÁé∞ÁöÑ
 				{
-					(*ctrl_cmds[i].cmd_handler)(sess);//*Ω‚“˝”√»°µ√∫Ø ˝£¨‘Ÿ¥´≤Œ
+					(*ctrl_cmds[i].cmd_handler)(sess);//*Ëß£ÂºïÁî®ÂèñÂæóÂáΩÊï∞ÔºåÂÜç‰º†ÂèÇ
 				}
-				else//Œ¥ µœ÷µƒ
+				else//Êú™ÂÆûÁé∞ÁöÑ
 				{
 					char buf[1024] = {0};
-					sprintf(buf, "%s not implemented.", sess->cmd);//∏Ò ΩªØ◊÷∑˚¥Æ£¨∞—√¸¡Ó∑≈ªÿ»•
-					ftp_reply(sess, FTP_COMMANDNOTIMPL, buf);//ªÿ∏¥øÕªß∂À√¸¡ÓŒ¥ µœ÷
+					sprintf(buf, "%s not implemented.", sess->cmd);//Ê†ºÂºèÂåñÂ≠óÁ¨¶‰∏≤ÔºåÊääÂëΩ‰ª§ÊîæÂõûÂéª
+					ftp_reply(sess, FTP_COMMANDNOTIMPL, buf);//ÂõûÂ§çÂÆ¢Êà∑Á´ØÂëΩ‰ª§Êú™ÂÆûÁé∞
 				}
 				break;
 			}
 		}
-		if(i >= n)//√ª”–’‚Ãı√¸¡Ó(’“≤ªµΩ)
+		if(i >= n)//Ê≤°ÊúâËøôÊù°ÂëΩ‰ª§(Êâæ‰∏çÂà∞)
 			ftp_reply(sess, FTP_BADCMD, "Unknown command.");
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//º¯»®µ«¬º œµÕ≥Ãÿ–‘√¸¡Ó µœ÷
+//Èâ¥ÊùÉÁôªÂΩï Á≥ªÁªüÁâπÊÄßÂëΩ‰ª§ÂÆûÁé∞
 static void do_user(session_t *sess)
 {
 	struct passwd *pw = getpwnam(sess->arg);
 	if(pw != NULL)
-		sess->uid = pw->pw_uid;//±£¥Ê”√ªßuid
+		sess->uid = pw->pw_uid;//‰øùÂ≠òÁî®Êà∑uid
 
 	//331 Please specify the password.
 	ftp_reply(sess, FTP_GIVEPWORD, "Please specify the password.");
@@ -207,15 +207,15 @@ static void do_user(session_t *sess)
 
 static void do_pass(session_t *sess)
 {
-	struct passwd *pw = getpwuid(sess->uid);//∏˘æ›”√ªßuid£¨¿¥ªÒ»°√‹¬Î
-	if(pw == NULL)//”√ªß «≤ª¥Ê‘⁄µƒ
+	struct passwd *pw = getpwuid(sess->uid);//Ê†πÊçÆÁî®Êà∑uidÔºåÊù•Ëé∑ÂèñÂØÜÁ†Å
+	if(pw == NULL)//Áî®Êà∑ÊòØ‰∏çÂ≠òÂú®ÁöÑ
 	{
 		//530 Login incorrect.
 		ftp_reply(sess, FTP_LOGINERR, "Login incorrect.");
 		return;
 	}
 
-	struct spwd *spw = getspnam(pw->pw_name);//∏˘æ›√‹¬Î√˚◊÷ªÒ»°”∞◊”Œƒº˛
+	struct spwd *spw = getspnam(pw->pw_name);//Ê†πÊçÆÂØÜÁ†ÅÂêçÂ≠óËé∑ÂèñÂΩ±Â≠êÊñá‰ª∂
 
 	char *crypt_passwd = crypt(sess->arg, spw->sp_pwdp);
 	if(strcmp(spw->sp_pwdp, crypt_passwd) != 0)
@@ -223,7 +223,7 @@ static void do_pass(session_t *sess)
 		ftp_reply(sess, FTP_LOGINERR, "Login incorrect.");
 		return;
 	}
-	//±‰∏¸»∫id°¢”√ªßid°¢µ±«∞µƒ”√ªßƒø¬º
+	//ÂèòÊõ¥Áæ§id„ÄÅÁî®Êà∑id„ÄÅÂΩìÂâçÁöÑÁî®Êà∑ÁõÆÂΩï
 	setegid(pw->pw_gid);
 	seteuid(pw->pw_uid);
 	chdir(pw->pw_dir);
@@ -231,7 +231,7 @@ static void do_pass(session_t *sess)
 	//230 Login successful.
 	ftp_reply(sess, FTP_LOGINOK, "Login successful.");
 }
-//œµÕ≥–≈œ¢
+//Á≥ªÁªü‰ø°ÊÅØ
 static void do_syst(session_t *sess)
 {
 	// 215 UNIX Type: L8
@@ -288,15 +288,15 @@ static void do_type(session_t *sess)
 static void do_port(session_t *sess)
 {
 	unsigned char v[6] = {0};
-	sscanf(sess->arg, "%d, %d, %d, %d, %d, %d,", &v[0], &v[1], &v[2], &v[3], &v[4], &v[5]);//¥”◊÷∑˚¥Æ ‰»Î ˝◊Èv
+	sscanf(sess->arg, "%d, %d, %d, %d, %d, %d,", &v[0], &v[1], &v[2], &v[3], &v[4], &v[5]);//‰ªéÂ≠óÁ¨¶‰∏≤ËæìÂÖ•Êï∞ÁªÑv
 	//printf("v[0] = %d, v[1]=%d, v[2]=%d, v[3]=%d, v[4]=%d, v[5]=%d\n",
 	//	v[0],v[1],v[2],v[3],v[4],v[5]);
-	sess->port_addr = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in));//sessionΩ·ππÃÂ¥Êµƒ «“ª∏ˆ÷∏’Î£¨‘⁄’‚¿Ôø™±Ÿø’º‰
+	sess->port_addr = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in));//sessionÁªìÊûÑ‰ΩìÂ≠òÁöÑÊòØ‰∏Ä‰∏™ÊåáÈíàÔºåÂú®ËøôÈáåÂºÄËæüÁ©∫Èó¥
 	memset(sess->port_addr, 0, sizeof(struct sockaddr_in));
 	//sin_family
 	sess->port_addr->sin_family = AF_INET;
 	//sin_addr
-	unsigned char *p = (unsigned char*)&sess->port_addr->sin_addr;//’“µΩ∏√≤ø∑÷ƒ⁄»›¥Ê¥¢ø™ ºµƒŒª÷√£¨ÃÓ≥‰ƒ⁄»›
+	unsigned char *p = (unsigned char*)&sess->port_addr->sin_addr;//ÊâæÂà∞ËØ•ÈÉ®ÂàÜÂÜÖÂÆπÂ≠òÂÇ®ÂºÄÂßãÁöÑ‰ΩçÁΩÆÔºåÂ°´ÂÖÖÂÜÖÂÆπ
 	p[0] = v[0];
 	p[1] = v[1];
 	p[2] = v[2];
@@ -307,7 +307,7 @@ static void do_port(session_t *sess)
 	p[1] = v[5];
 
 	//printf("ip = %s\n", inet_ntoa(sess->port_addr->sin_addr));
-	//printf("port = %d\n", ntohs(sess->port_addr->sin_port));Õ¯¬Á◊÷Ω⁄–Ú◊™Œ™±æµÿ◊÷Ω⁄–Ú
+	//printf("port = %d\n", ntohs(sess->port_addr->sin_port));ÁΩëÁªúÂ≠óËäÇÂ∫èËΩ¨‰∏∫Êú¨Âú∞Â≠óËäÇÂ∫è
 
 	//200 PORT command successful. Consider using PASV.
 	ftp_reply(sess, FTP_PORTOK, "PORT command successful. Consider using PASV.");
@@ -363,11 +363,11 @@ static void do_pasv(session_t *sess)
 }
 
 ///////////////////////////////////////////////////////
-// ˝æ›¡¨Ω”
+//Êï∞ÊçÆËøûÊé•
 
 int port_active(session_t *sess)
 {
-	if(sess->port_addr != 0)//≤ªŒ™ø’µƒª∞æÕ «÷˜∂Ø¡¨Ω”£®“ÚŒ™÷˜∂Øƒ£ Ω–Ë“™Ω‚ŒˆøÕªß∂À∑¢¿¥µƒIP∫ÕPORT£©
+	if(sess->port_addr != 0)//‰∏ç‰∏∫Á©∫ÁöÑËØùÂ∞±ÊòØ‰∏ªÂä®ËøûÊé•ÔºàÂõ†‰∏∫‰∏ªÂä®Ê®°ÂºèÈúÄË¶ÅËß£ÊûêÂÆ¢Êà∑Á´ØÂèëÊù•ÁöÑIPÂíåPORTÔºâ
 		return 1;
 	return 0;
 }
@@ -376,12 +376,12 @@ int pasv_active(session_t *sess)
 	priv_sock_send_cmd(sess->child_fd, PRIV_SOCK_PASV_ACTIVE);
 	return priv_sock_get_int(sess->child_fd);
 }
-//ªÒ»° ˝æ›¡¨Ω”
+//Ëé∑ÂèñÊï∞ÊçÆËøûÊé•
 int get_transfer_fd(session_t *sess)
 {
 	if(!port_active(sess) && !pasv_active(sess))
 	{
-		//425 Use PORT or PASV first(¡Ω∏ˆ∑Ω Ω∂º√ª”–±ªº§ªÓ)
+		//425 Use PORT or PASV first(‰∏§‰∏™ÊñπÂºèÈÉΩÊ≤°ÊúâË¢´ÊøÄÊ¥ª)
 		ftp_reply(sess, FTP_BADSENDCONN, "Use PORT or PASV first");
 		return 0;
 	}
@@ -428,7 +428,7 @@ int get_transfer_fd(session_t *sess)
 	}
 
 
-	// ˝æ›¡¨Ω”_ø’œ–∂œø™
+	//Êï∞ÊçÆËøûÊé•_Á©∫Èó≤Êñ≠ÂºÄ
 	start_data_alarm();
 
 	return 1;
@@ -482,10 +482,10 @@ void list_common(session_t *sess)
 
 	closedir(dir);
 }
-// µœ÷LIST√¸¡Ó
+//ÂÆûÁé∞LISTÂëΩ‰ª§
 static void do_list(session_t *sess)
 {
-	//1  Ω®¡¢ ˝æ›¡¨Ω”  port  pasv
+	//1  Âª∫Á´ãÊï∞ÊçÆËøûÊé•  port  pasv
 	if(get_transfer_fd(sess) == 0)
 		return;
 	//printf("data_fd = %d\n", sess->data_fd);
@@ -503,7 +503,7 @@ static void do_list(session_t *sess)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-//cwd°¢cdup°¢mkd°¢dele°¢rmd°¢size°¢rnfr°¢rnto
+//cwd„ÄÅcdup„ÄÅmkd„ÄÅdele„ÄÅrmd„ÄÅsize„ÄÅrnfr„ÄÅrnto
 
 static void do_cwd(session_t *sess)
 {
@@ -656,11 +656,11 @@ static void do_rnto(session_t *sess)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//œ¬‘ÿ …œ¥´ –¯‘ÿ œﬁÀŸ
+//‰∏ãËΩΩ ‰∏ä‰º† Áª≠ËΩΩ ÈôêÈÄü
 
 void limit_rate(session_t *sess, int bytes_transfered, int is_upload)
 {
-	// ˝æ›¡¨Ω”_ø’œ–∂œø™
+	//Êï∞ÊçÆËøûÊé•_Á©∫Èó≤Êñ≠ÂºÄ
 	sess->data_process = 1;
 
 	if(sess->bw_upload_rate_max==0 && sess->bw_download_rate_max==0)
@@ -702,10 +702,10 @@ void limit_rate(session_t *sess, int bytes_transfered, int is_upload)
 	sess->bw_transfer_start_sec = get_time_sec();
 	sess->bw_transfer_start_usec = get_time_usec();
 }
-//œ¬‘ÿŒƒº˛
+//‰∏ãËΩΩÊñá‰ª∂
 static void do_retr(session_t *sess)
 {
-	//1Ω®¡¢ ˝æ›¡¨Ω”
+	//1Âª∫Á´ãÊï∞ÊçÆËøûÊé•
 	if(get_transfer_fd(sess) == 0)
 		return;
 
@@ -713,18 +713,18 @@ static void do_retr(session_t *sess)
 	stat(sess->arg, &sbuf);
 
 	char buf[MAX_BUFFER_SIZE] = {0};
-	//2≈–∂œ¥´ ‰ƒ£ Ω
+	//2Âà§Êñ≠‰º†ËæìÊ®°Âºè
 	if(sess->is_ascii)
-		sprintf(buf,  "Opening ASCII mode data connection for %s (%ld bytes)",
-			sess->arg, sbuf.st_size);//Ascii
+		snprint(buf, sizeof(buf), "Opening ASCII mode data connection for %s (%ld bytes)",
+			sess->arg, sbuf.st_size);
 	else
-		sprintf(buf, "Opening BINARY mode data connection for %s (%ld bytes)",
+		snprint(buf, sizeof(buf), "Opening BINARY mode data connection for %s (%ld bytes)",
 			sess->arg, sbuf.st_size);
 
-	//3ªÿ∏¥150
+	//3ÂõûÂ§ç150
 	ftp_reply(sess, FTP_DATACONN, buf);
 
-	//4¥´ ‰ ˝æ›
+	//4‰º†ËæìÊï∞ÊçÆ
 	int fd = open(sess->arg, O_RDONLY);
 	if(fd < 0)
 	{
@@ -779,7 +779,7 @@ static void do_retr(session_t *sess)
 	close(fd);
 	close(sess->data_fd);
 	sess->data_fd = -1;
-	//5ªÿ∏¥226
+	//5ÂõûÂ§ç226
 	if(flag == 0)
 		ftp_reply(sess, FTP_TRANSFEROK, "Transfer complete.");
 	else if(flag == 1)
@@ -789,18 +789,18 @@ static void do_retr(session_t *sess)
 	else if(flag == 3)
 		ftp_reply(sess, FTP_BADSENDNET, "Failure writting to network stream.");
 }
-//…œ¥´Œƒº˛
+//‰∏ä‰º†Êñá‰ª∂
 static void do_stor(session_t *sess)
 {
 
-	//1Ω®¡¢ ˝æ›¡¨Ω”
+	//1Âª∫Á´ãÊï∞ÊçÆËøûÊé•
 	if(get_transfer_fd(sess) == 0)
 		return;
 
 	//150 Ok to send data.
 	ftp_reply(sess, FTP_DATACONN, "Ok to send data.");
 
-	//4¥´ ‰ ˝æ›
+	//4‰º†ËæìÊï∞ÊçÆ
 	int fd = open(sess->arg, O_CREAT|O_WRONLY, 0755);
 	if(fd < 0)
 	{
@@ -851,7 +851,7 @@ static void do_stor(session_t *sess)
 	close(fd);
 	close(sess->data_fd);
 	sess->data_fd = -1;
-	//5ªÿ∏¥226
+	//5ÂõûÂ§ç226
 	if(flag == 0)
 		ftp_reply(sess, FTP_TRANSFEROK, "Transfer complete.");
 	else if(flag == 1)
